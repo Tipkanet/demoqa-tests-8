@@ -65,6 +65,7 @@ public class RegistrationFormTests {
         $(".modal-title").shouldHave(text("Thanks for submitting the form"));
         $(".table-responsive").shouldHave(text("Alex Egorov"), text("alex@egorov.com"), text("28 July,2005"));
         $(".table-responsive").$(byText("Student Name")).shouldHave(text("Alex Egorov"));
+        $(".table-responsive").$(byText("Email")).shouldHave(text("alex@egorov.com"));
         $x("//td[text()='Student Name']").parent()
                 .shouldHave(text("Alex Egorov"));
 
@@ -83,5 +84,12 @@ public class RegistrationFormTests {
 //        $("#output #email").shouldHave(text("alex@qaguru.com"));
 //        $("#output p#currentAddress").shouldHave(text("some street 1"));
 //        $("#output #permanentAddress").shouldHave(text(permanentAddress));
+    }
+    @Test
+    void emptyFillFormTest() {
+        open("/automation-practice-form");
+        $("#submit").click();
+
+        $("#firstName").shouldHave(cssValue("border-color", "rgb(220, 53, 69)"));
     }
 }
